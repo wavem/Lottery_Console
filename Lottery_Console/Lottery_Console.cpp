@@ -2,10 +2,61 @@
 //
 
 #include <iostream>
+#include <Windows.h>
+
+
+void GetLotteryNum(int* _pBuff) {
+    
+    int t_Count = 0;
+    int t_Value = 0;
+    bool t_bDuplicated = false;
+
+    while (t_Count <= 5) {
+        // Init Routine
+        t_bDuplicated = false;
+
+        // Making Value
+        t_Value = rand() % 46;
+        
+        // Search Routine        
+        for (int i = 0; i < 6; i++) {
+            if (*(_pBuff + i) == t_Value) {
+                t_bDuplicated = true;
+            }
+        }
+
+        // Check Duplicated Number
+        if (t_bDuplicated) continue;
+
+        *(_pBuff + t_Count) = t_Value;
+        t_Count++;
+    }
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    //SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE);
+
+    srand((unsigned int)GetTickCount64());
+
+    int LNum[6] = { 0, };
+    GetLotteryNum(LNum);
+    
+    std::cout << "===============================================================\n"; // 63
+    std::cout << "\t\t\tWelcome !!\n\n";
+    std::cout << "\t\t  Today's L-Number is...\n\n";
+    std::cout << "\t\t  ";
+    SetConsoleTextAttribute(hConsole, 10);
+    for (int i = 0; i < 6; i++) {
+        std::cout << LNum[i] << "   ";
+    }
+    std::cout << "\n";
+    SetConsoleTextAttribute(hConsole, 15);
+    std::cout << "===============================================================\n"; // 63    
+    
+    std::cout << "\nGood Luck...\n";
+
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
