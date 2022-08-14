@@ -57,6 +57,17 @@ int main()
     
     std::cout << "\nGood Luck...\n";
 
+
+    std::cout << "\nTest\n";
+    for (int i = 0; i < 10; i++) {
+        GetLotteryNum(LNum);
+            
+        for (int k = 0; k < 6; k++) {
+            std::cout << LNum[k] << "\t";
+        }
+        std::cout << "\n";
+    }
+
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
