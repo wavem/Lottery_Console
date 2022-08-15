@@ -16,7 +16,7 @@ void GetLotteryNum(int* _pBuff) {
         t_bDuplicated = false;
 
         // Making Value
-        t_Value = rand() % 46;
+        t_Value = rand() % 45 + 1;
         
         // Search Routine        
         for (int i = 0; i < 6; i++) {
