@@ -33,6 +33,42 @@ void GetLotteryNum(int* _pBuff) {
     }
 }
 
+void SortLotteryNum(int* _pBuff) {
+
+    // Common
+    int t_LNum[6] = { 0, };
+    int t_Idx = 0;
+    int t_Value = 0;
+    bool t_bComplete = false;
+
+    // Copy Routine
+    for (int i = 0; i < 6; i++) {
+        t_LNum[i] = *(_pBuff + i);
+    }
+
+    // Sorting Routine
+    while (!t_bComplete) {
+
+        if (t_Idx == 5) break;
+
+        if (t_LNum[t_Idx] > t_LNum[t_Idx + 1]) {
+            t_Value = t_LNum[t_Idx];
+            t_LNum[t_Idx] = t_LNum[t_Idx + 1];
+            t_LNum[t_Idx + 1] = t_Value;
+            t_Idx = 0;
+            continue;
+        }
+        else {
+            t_Idx++;
+        }
+    }
+
+    // Return Result
+    for (int i = 0; i < 6; i++) {
+        *(_pBuff + i) = t_LNum[i];
+    }
+}
+
 int main()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -42,6 +78,7 @@ int main()
 
     int LNum[6] = { 0, };
     GetLotteryNum(LNum);
+    SortLotteryNum(LNum);
     
     std::cout << "===============================================================\n"; // 63
     std::cout << "\t\t\tWelcome !!\n\n";
@@ -61,6 +98,7 @@ int main()
     std::cout << "\nTest\n";
     for (int i = 0; i < 10; i++) {
         GetLotteryNum(LNum);
+        SortLotteryNum(LNum);
             
         for (int k = 0; k < 6; k++) {
             std::cout << LNum[k] << "\t";
