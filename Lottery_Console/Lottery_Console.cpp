@@ -69,34 +69,64 @@ void SortLotteryNum(int* _pBuff) {
     }
 }
 
+void PrintGameInfo(__int64 _GameCount) {
+    HANDLE t_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD CursorPos;
+    CursorPos.X = 0;
+    CursorPos.Y = 8; 
+    SetConsoleCursorPosition(t_hConsole, CursorPos);
+    __int64 t_TotalGameMoney = 0;
+    SetConsoleTextAttribute(t_hConsole, 8);
+    std::cout << "\nTOTAL GAME COUNT : ";
+    SetConsoleTextAttribute(t_hConsole, 10);
+    std::cout << _GameCount << "\n";
+    
+    SetConsoleTextAttribute(t_hConsole, 8);
+    t_TotalGameMoney = _GameCount * 1000;
+    std::cout << "TOTAL GAME MONEY : ";
+    SetConsoleTextAttribute(t_hConsole, 10);
+    std::cout << t_TotalGameMoney;
+    SetConsoleTextAttribute(t_hConsole, 8);
+    std::cout << " won\n";
+    SetConsoleTextAttribute(t_hConsole, 15);
+}
+
 int main()
 {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    //SetConsoleTextAttribute(hConsole, FOREGROUND_RED | BACKGROUND_BLUE);
-
+    // Common
     srand((unsigned int)GetTickCount64());
-
-    int LNum[6] = { 0, };
-    GetLotteryNum(LNum);
-    SortLotteryNum(LNum);
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     
+    int LNum[6] = { 0, }; 
+    int t_InputValue = 0;
+    __int64 TotalGameCount = 0;
+
+
+    // START TEXT
     std::cout << "===============================================================\n"; // 63
     std::cout << "\t\t\tWelcome !!\n\n";
     std::cout << "\t\t  Today's L-Number is...\n\n";
     std::cout << "\t\t  ";
     SetConsoleTextAttribute(hConsole, 10);
+    GetLotteryNum(LNum);
+    SortLotteryNum(LNum);
     for (int i = 0; i < 6; i++) {
         std::cout << LNum[i] << "   ";
     }
     std::cout << "\n";
     SetConsoleTextAttribute(hConsole, 15);
     std::cout << "===============================================================\n"; // 63    
-    
-    std::cout << "\nGood Luck...\n";
 
+    std::cout << "How many game play do you want?  ";
+    SetConsoleTextAttribute(hConsole, 6);
+    std::cin >> TotalGameCount;    
+    SetConsoleTextAttribute(hConsole, 15);
+    PrintGameInfo(TotalGameCount);
+        
+    std::cout << "\nGood Luck...\n";  
 
-    std::cout << "\nTest\n";
-    for (int i = 0; i < 10; i++) {
+    //std::cout << "\nTest\n";
+    for (int i = 0; i < TotalGameCount ; i++) {
         GetLotteryNum(LNum);
         SortLotteryNum(LNum);
             
@@ -106,6 +136,11 @@ int main()
         std::cout << "\n";
     }
 
+
+
+
+
+    
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
