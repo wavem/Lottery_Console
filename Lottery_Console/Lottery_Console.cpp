@@ -5,6 +5,8 @@
 #include <Windows.h>
 
 
+int g_WinNumber[6];
+
 void GetLotteryNum(int* _pBuff) {
     
     int t_Count = 0;
@@ -91,14 +93,46 @@ void PrintGameInfo(__int64 _GameCount) {
     SetConsoleTextAttribute(t_hConsole, 15);
 }
 
+bool IsWinNumber(int _Num) {
+
+    bool t_rst = false;
+    for (int i = 0; i < 6; i++) {
+        if (_Num == g_WinNumber[i]) t_rst = true;
+    }
+    return t_rst;
+}
+
+void PrintLotteryNum(int* _pBuff) {
+
+    // Common
+    int t_LNum[6] = { 0, };
+    HANDLE t_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(t_hConsole, 15);
+
+    // Copy Lottery Num
+    for (int i = 0; i < 6; i++) {
+        t_LNum[i] = *(_pBuff + i);
+    }
+
+    for (int i = 0; i < 6; i++) {
+        if (IsWinNumber(t_LNum[i])) {
+            SetConsoleTextAttribute(t_hConsole, 6);
+        }
+        else {
+            SetConsoleTextAttribute(t_hConsole, 15);
+        }
+        std::cout << t_LNum[i] << "\t";
+    }
+    std::cout << "\n";
+}
+
+
 int main()
 {
     // Common
     srand((unsigned int)GetTickCount64());
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    
     int LNum[6] = { 0, }; 
-    int t_InputValue = 0;
     __int64 TotalGameCount = 0;
 
 
@@ -108,10 +142,10 @@ int main()
     std::cout << "\t\t  Today's L-Number is...\n\n";
     std::cout << "\t\t  ";
     SetConsoleTextAttribute(hConsole, 10);
-    GetLotteryNum(LNum);
-    SortLotteryNum(LNum);
+    GetLotteryNum(g_WinNumber);
+    SortLotteryNum(g_WinNumber);
     for (int i = 0; i < 6; i++) {
-        std::cout << LNum[i] << "   ";
+        std::cout << g_WinNumber[i] << "   ";
     }
     std::cout << "\n";
     SetConsoleTextAttribute(hConsole, 15);
@@ -129,18 +163,8 @@ int main()
     for (int i = 0; i < TotalGameCount ; i++) {
         GetLotteryNum(LNum);
         SortLotteryNum(LNum);
-            
-        for (int k = 0; k < 6; k++) {
-            std::cout << LNum[k] << "\t";
-        }
-        std::cout << "\n";
-    }
-
-
-
-
-
-    
+        PrintLotteryNum(LNum);            
+    }    
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
