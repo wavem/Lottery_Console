@@ -129,13 +129,13 @@ void PrintLotteryNum(int* _pBuff) {
         else {
             SetConsoleTextAttribute(t_hConsole, 15);
         }
-        std::cout << t_LNum[i] << "\t";
+        //std::cout << t_LNum[i] << "\t";
     }
     
     // Check Winner
     SetConsoleTextAttribute(t_hConsole, 10);
     if (t_WinCount == 4) {        
-        std::cout << "Grade 4 ! 50,000 won";
+        //std::cout << "Grade 4 ! 50,000 won";
         g_G_4_Count++;
     }
     else if (t_WinCount == 5) {
@@ -161,7 +161,7 @@ void PrintLotteryNum(int* _pBuff) {
         g_G_1_Count++;
     }
 
-    std::cout << "\n";
+    //std::cout << "\n";
 }
 
 void PrintTotalResult() {
