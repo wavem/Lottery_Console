@@ -216,15 +216,15 @@ int main()
     SetConsoleTextAttribute(hConsole, 15);
     std::cout << "===============================================================\n"; // 63    
 
+    // INPUT ORDER
     std::cout << "How many game play do you want?  ";
     SetConsoleTextAttribute(hConsole, 6);
     std::cin >> TotalGameCount;    
     SetConsoleTextAttribute(hConsole, 15);
     PrintGameInfo(TotalGameCount);
         
+    // GAME START
     std::cout << "\nGood Luck...\n";  
-
-    //std::cout << "\nTest\n";
     for (int i = 0; i < TotalGameCount ; i++) {
         GetLotteryNum(LNum);
         SortLotteryNum(LNum);
