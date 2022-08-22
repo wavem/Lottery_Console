@@ -216,6 +216,7 @@ int main()
     SetConsoleTextAttribute(hConsole, 15);
     std::cout << "===============================================================\n"; // 63    
 
+
     // INPUT ORDER
     std::cout << "How many game play do you want?  ";
     SetConsoleTextAttribute(hConsole, 6);
@@ -223,6 +224,7 @@ int main()
     SetConsoleTextAttribute(hConsole, 15);
     PrintGameInfo(TotalGameCount);
         
+
     // GAME START
     std::cout << "\nGood Luck...\n";  
     for (int i = 0; i < TotalGameCount ; i++) {
@@ -231,11 +233,12 @@ int main()
         PrintLotteryNum(LNum);            
     }    
 
+
+    // GAME OVER
     PrintTotalResult();
 }
 
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
+
 
 // 시작을 위한 팁: 
 //   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
