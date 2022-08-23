@@ -225,6 +225,38 @@ int main()
     PrintGameInfo(TotalGameCount);
         
 
+    // TEST CODE
+    COORD CursorPos;
+    CursorPos.X = 0;
+    CursorPos.Y = 12;
+
+    while (1) {
+        SetConsoleCursorPosition(hConsole, CursorPos);
+        for (int k = 0; k < 15; k++) {
+            for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < 6; i++) {
+                    printf("%02X  ", rand() % 255);
+                }
+                printf("     ");
+            }
+            printf("\n");
+        }
+        Sleep(250);
+    }
+    
+
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+#if 0
     // GAME START
     std::cout << "\nGood Luck...\n";  
     for (int i = 0; i < TotalGameCount ; i++) {
@@ -236,6 +268,7 @@ int main()
 
     // GAME OVER
     PrintTotalResult();
+#endif
 }
 
 
