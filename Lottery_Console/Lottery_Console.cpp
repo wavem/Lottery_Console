@@ -229,12 +229,20 @@ int main()
     COORD CursorPos;
     CursorPos.X = 0;
     CursorPos.Y = 12;
-
-    while (1) {
+    int temp = 10;
+    int value = 0;
+    while (temp) {
         SetConsoleCursorPosition(hConsole, CursorPos);
         for (int k = 0; k < 15; k++) {
             for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 6; i++) {
+                    value = rand() % 255;
+                    if (value % 2 == 0) {
+                        SetConsoleTextAttribute(hConsole, 6);
+                    }
+                    else {
+                        SetConsoleTextAttribute(hConsole, 15);
+                    }
                     printf("%02X  ", rand() % 255);
                 }
                 printf("     ");
@@ -242,6 +250,7 @@ int main()
             printf("\n");
         }
         Sleep(250);
+        temp--;
     }
     
 
