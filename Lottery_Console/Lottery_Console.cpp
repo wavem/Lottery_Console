@@ -229,7 +229,7 @@ int main()
     COORD CursorPos;
     CursorPos.X = 0;
     CursorPos.Y = 12;
-    int temp = 10;
+    int temp = 4;
     int value = 0;
     while (temp) {
         SetConsoleCursorPosition(hConsole, CursorPos);
@@ -253,6 +253,14 @@ int main()
         temp--;
     }
     
+    printf("Test");
+    Sleep(1000);
+    printf("\r");
+    //printf("\b");
+    Sleep(1000);
+    printf("    ");
+    Sleep(1000);
+    printf("\n");
 
     
     
