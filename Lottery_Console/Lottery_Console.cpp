@@ -158,7 +158,7 @@ void PrintLotteryNum(int* _pBuff) {
     }
     else if (t_WinCount == 6) {
         std::cout << "OMG 1 !!!!!!!!!!!!!!!!!!!!!!!";
-        g_G_1_Count++;
+g_G_1_Count++;
     }
 
     //std::cout << "\n";
@@ -196,7 +196,7 @@ int main()
     // Common
     srand((unsigned int)GetTickCount64());
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    int LNum[7] = { 0, }; 
+    int LNum[7] = { 0, };
     __int64 TotalGameCount = 0;
 
 
@@ -220,16 +220,16 @@ int main()
     // INPUT ORDER
     std::cout << "How many game play do you want?  ";
     SetConsoleTextAttribute(hConsole, 6);
-    std::cin >> TotalGameCount;    
+    std::cin >> TotalGameCount;
     SetConsoleTextAttribute(hConsole, 15);
     PrintGameInfo(TotalGameCount);
-        
+
 
     // TEST CODE
     COORD CursorPos;
     CursorPos.X = 0;
     CursorPos.Y = 12;
-    int temp = 4;
+    int temp = 10;
     int value = 0;
     while (temp) {
         SetConsoleCursorPosition(hConsole, CursorPos);
@@ -249,10 +249,31 @@ int main()
             }
             printf("\n");
         }
+        Sleep(50);
+        temp--;
+    }
+
+    // PROGRESS BAR TEST
+    int StartCursorPotition = 1;
+    int CurrentCursorPotition = 1;   
+    CursorPos.X = 0;
+    CursorPos.Y = 27;
+    printf("[          ]");
+    SetConsoleCursorPosition(hConsole, CursorPos);
+    temp = 10;
+    while (temp) {
+        CursorPos.X = CurrentCursorPotition++;
+        SetConsoleCursorPosition(hConsole, CursorPos);
+        printf("=");
+        
         Sleep(250);
         temp--;
     }
-    
+printf("\n");
+
+
+    // \r \b Test
+#if 0
     printf("Test");
     Sleep(1000);
     printf("\r");
@@ -261,6 +282,7 @@ int main()
     printf("    ");
     Sleep(1000);
     printf("\n");
+#endif
 
     
     
