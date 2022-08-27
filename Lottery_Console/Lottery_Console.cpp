@@ -258,15 +258,15 @@ int main()
     int CurrentCursorPotition = 1;   
     CursorPos.X = 0;
     CursorPos.Y = 27;
-    printf("[          ]");
+    printf("[                              ]");
     SetConsoleCursorPosition(hConsole, CursorPos);
-    temp = 10;
+    temp = 30;
     while (temp) {
         CursorPos.X = CurrentCursorPotition++;
         SetConsoleCursorPosition(hConsole, CursorPos);
         printf("=");
         
-        Sleep(250);
+        Sleep(50);
         temp--;
     }
 printf("\n");
